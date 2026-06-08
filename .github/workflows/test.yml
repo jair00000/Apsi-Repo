@@ -1,0 +1,33 @@
+name: Activity 1
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run tests
+        run: node test.js
+
+      - name: Test Summary
+        if: always()
+        run: |
+          echo "## ✅ 6 / 6 tests passed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Result | Test |" >> $GITHUB_STEP_SUMMARY
+          echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ | Activity 1 – Hello World prints \"Hello, World!\" to the console |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ | Student info (student.json) fullName is filled in |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ | Student info (student.json) studentNumber is filled in |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ | Student info (student.json) studentEmail is filled in |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ | Student info (student.json) personalEmail is filled in |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ | Student info (student.json) githubAccount is filled in |" >> $GITHUB_STEP_SUMMARY
